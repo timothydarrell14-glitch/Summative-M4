@@ -1,14 +1,46 @@
 from models import user
 from models import task
+from models import project
+import os 
+import json
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+task_data = os.path.join(BASE_DIR, 'data', 'tasks.json')
+user_data = os.path.join(BASE_DIR, 'data', 'users.json')
+project_data = os.path.join(BASE_DIR, 'data', 'projects.json')
 
 # data handling
 
 def load_data():
-    pass
- 
+    global tasks, users, projects
+
+    tasks = []
+    users = []
+    projects = []
+
+    if os.path.exists(task_data):
+        with open(task_data, 'r') as f:
+            tasks = json.load(f)
+
+    if os.path.exists(user_data):
+        with open(user_data, 'r') as f:
+            users = json.load(f)
+
+    if os.path.exists(project_data):
+        with open(project_data, 'r') as f:
+            projects = json.load(f)
 
 def save_data():
-    pass
+    os.makedirs(os.path.dirname(task_data), exist_ok=True)
+
+    with open(task_data, 'w') as f:
+        json.dump(tasks, f)
+
+    with open(user_data, 'w') as f:
+        json.dump(users, f)
+
+    with open(project_data, 'w') as f:
+        json.dump(projects, f)
 
 # display menu
 
@@ -56,11 +88,11 @@ def run():
                     title = input("Enter title/name of project----").strip()
                     description = input("Enter the description of the project----").strip()
                     due_date = input("Enter the due date of the project(DD-MM-YYYY)----").strip()
-                    new_project = add_project(title, description, due_date)
+                    new_project = project.add_project(title, description, due_date)
                 elif choice == "2":
                     name = input("Enter name----").strip()
                     email = input("Enter email----").strip()
-                    new_user = user(name, email)
+                    new_user = user.add_user(name, email)
 
                 elif choice == "3":
                     pass
