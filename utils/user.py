@@ -1,6 +1,8 @@
 from models import user
 
 def add_user(self):
+    # check for empty strings and simple check for email
+    super().__init__(self, name, email)
     pass
 
 def view_user(self):

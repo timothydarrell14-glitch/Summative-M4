@@ -14,3 +14,5 @@ def edit_task(self):
 
 def delete_task(self):
     pass
+
+# change status of task

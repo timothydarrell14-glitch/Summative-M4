@@ -1,5 +1,3 @@
-from models import user
-
 class Project:
     def __init__(self, title, description, due_date):
         self.title = title
