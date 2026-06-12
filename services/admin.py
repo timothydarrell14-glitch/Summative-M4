@@ -1,6 +1,6 @@
-from models import user
-from models import task
-from models import project
+from models.user import User
+from models.task import Task
+from models.project import Project
 import os 
 import json
 
@@ -88,11 +88,11 @@ def run():
                     title = input("Enter title/name of project----").strip()
                     description = input("Enter the description of the project----").strip()
                     due_date = input("Enter the due date of the project(DD-MM-YYYY)----").strip()
-                    new_project = project.add_project(title, description, due_date)
+                    new_project = Project.add_project(title, description, due_date)
                 elif choice == "2":
                     name = input("Enter name----").strip()
                     email = input("Enter email----").strip()
-                    new_user = user.add_user(name, email)
+                    new_user = User(name, email)
 
                 elif choice == "3":
                     pass
@@ -152,7 +152,7 @@ def run():
                     title = input("Enter title of task----")
                     status = input("Enter status of task----")
                     assigned_to = input("Enter name of person assigned to----")
-                    new_task = task(project_name, title, status, assigned_to)
+                    new_task = Task(project_name, title, status, assigned_to)
                 elif choice == "3":
                     pass
                 elif choice == "4":

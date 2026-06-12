@@ -2,19 +2,12 @@ class User:
     def __init__(self, name, email):
         self.name = name
         self.email = email
-
-    def to_dict(self, name, email):
-        print(f'Name: self.name')
-        print(f'Email: self.email')
-        return {
-            'name': self.name,
-            'email': self.email
-        }
+        self.role = None
     
-    def add_user(self, name, email):
+    def add_user(self):
         self.role = "developer"
         if "@" and "." in self.email and self.name and self.email != "":
-            print("User is working")
+            print("add user is working")
 
     def view_user(self):
         pass
