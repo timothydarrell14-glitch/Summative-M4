@@ -4,17 +4,23 @@ class User:
         self.email = email
         self.role = None
     
-    def add_user(self, name, email, users):
-        self.role = "developer"
-        if "@" and "." in email and name != "" and email != "":
-            users.append({
-                'name': {name},
-                'email': {email}
-            })
-            print("**User successfully added**")
-
-        else:
+    @classmethod
+    def add_user(cls, name, email, users):
+        if name == "" or email == "":
             print("**Ensure input fields are all filled**")
+            return None
+
+        if "@" in email and "." in email:
+            user = {
+                'name': name,
+                'email': email
+            }
+            users.append(user)
+            print("**User successfully added**")
+            return user
+
+        print("**Ensure input fields are all filled**")
+        return None
 
     def view_user(self, name, users):
         for user in users:
@@ -24,9 +30,3 @@ class User:
     def list_users(self, users):
         for user in users:
             print(user)
-
-    # def edit_user(self):
-    #     pass
-
-    # def delete_user(self):
-    #     pass

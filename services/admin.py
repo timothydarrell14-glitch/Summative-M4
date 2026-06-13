@@ -43,6 +43,85 @@ def save_data():
     with open(project_data, 'w', encoding='utf-8') as f:
         json.dump(projects, f, indent=2)
 
+
+
+
+def edit_user():
+    name = input("Enter the name of the user to edit----").strip()
+    
+    for user in users:
+        if name == user['name']:
+            new_name = input(f"Enter new name [{user['name']}]----").strip()
+            new_email = input(f"Enter new email [{user['email']}]----").strip()
+
+        if new_name:
+            user['name'] = new_name
+        if new_email:
+            if "@" in new_email and "." in new_email:
+                user['email'] = new_email
+                print("User updated:", user)
+            else:
+                print("Invalid email format. Keeping existing email.")
+        else:
+            print("**User not found**")
+    
+
+
+def delete_user():
+    name = input("Enter the name of the user to delete----").strip()
+    for index, user in enumerate(users):
+        if user.get('name') == name:
+            removed = users.pop(index)
+            print("User deleted:", removed)
+            return
+    print("User not found.")
+
+
+def edit_project():
+    from datetime import datetime
+
+    title = input("Enter the title of the project to edit----").strip()
+    
+    for project in projects:
+        if title == project['title']:
+
+
+            new_title = input(f"Enter new title [{project['title']}]----").strip()
+            new_description = input(f"Enter new description [{project['description']}]----").strip()
+            new_due_date = input(f"Enter new due date [{project['due_date']}]----").strip()
+
+            old_title = project['title']
+            if new_title:
+                project['title'] = new_title
+            for task in tasks:
+                if task.get('project') == old_title:
+                    task['project'] = new_title
+
+            if new_description:
+                project['description'] = new_description
+
+            new_due_date = datetime.strptime(new_due_date, "%d-%m-%Y")
+            print("Project updated:", project)
+        
+        else:
+            print("Enter an existing project")
+
+    
+
+
+def delete_project():
+    title = input("Enter the title of the project to delete----").strip()
+    for index, project in enumerate(projects):
+        if project.get('title') == title:
+            projects.pop(index)
+            removed_tasks = [task for task in tasks if task.get('project') == title]
+            tasks[:] = [task for task in tasks if task.get('project') != title]
+            print("Project deleted:", project)
+            if removed_tasks:
+                print(f"Also removed {len(removed_tasks)} tasks for that project.")
+            return
+    print("Project not found.")
+
 # display menu
 
 # -------> Admin/Employee
@@ -51,7 +130,7 @@ def save_data():
 # -------> Project -> List of projects, add task, list of tasks in project
 # ****include tasks in project object ****
 def run():
-    """Run the admin CLI loop."""
+    
     load_data()
     try:
         while True:
@@ -75,12 +154,12 @@ def run():
                 print()
                 print("1. Add Project")
                 print("2. Add User")
-                # print("3. Edit User")
-                # print("4. Edit Project")
-                # print("5. Delete User")
-                # print("6. Delete Project")
-                print("3. Exit")
-                print("4. Save Data")
+                print("3. Edit User")
+                print("4. Edit Project")
+                print("5. Delete User")
+                print("6. Delete Project")
+                print("7. Exit")
+                print("8. Save Data")
                 print()
                 print()
 
@@ -98,18 +177,18 @@ def run():
                     new_user = User.add_user(name, email, users)
                     print(new_user)
 
-                # elif choice == "3":
-                #     pass
-                # elif choice == "4":
-                #     pass
-                # elif choice == "5":
-                #     pass
-                # elif choice == "6":
-                #     pass
                 elif choice == "3":
+                    edit_user()
+                elif choice == "4":
+                    edit_project()
+                elif choice == "5":
+                    delete_user()
+                elif choice == "6":
+                    delete_project()
+                elif choice == "7":
                     save_data()
                     break
-                elif choice == "4":
+                elif choice == "8":
                     save_data()
                 else:
                     print("Try again, invalid input")
@@ -164,7 +243,7 @@ def run():
                         title = input("Enter title of task----")
                         status = input("Enter status of task----")
                         assigned_to = input("Enter name of person assigned to----")
-                        new_task = Task.add_task(project_name, title, status, assigned_to, projects)
+                        new_task = Task.add_task(project_name, title, status, assigned_to, tasks)
                         print(new_task)
                     else:
                         print("Please enter a valid project")

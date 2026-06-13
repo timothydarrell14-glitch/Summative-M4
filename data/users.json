@@ -1,5 +1,4 @@
-{
-  "administrators": [
+[
     {
       "id": "u1",
       "name": "Alice Vance",
@@ -9,9 +8,8 @@
       "id": "u2",
       "name": "Bob Miller",
       "email": "bob@company.com"
-    }
-  ],
-  "managers": [
+    },
+
     {
       "id": "u3",
       "name": "Charlie Smith",
@@ -21,9 +19,8 @@
       "id": "u4",
       "name": "Diana Prince",
       "email": "diana@company.com"
-    }
-  ],
-  "developers": [
+    },
+  
     {
       "id": "u5",
       "name": "Evan Wright",
@@ -40,4 +37,3 @@
       "email": "george@company.com"
     }
   ]
-}
