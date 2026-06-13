@@ -1,20 +1,20 @@
 [
-    {
-      "project": "Beta Website Redesign",
-      "title": "Design Database Schema",
-      "assigned_to": "u5",
-      "status": "Completed"
-    },
-    {
-      "project": "Beta Website Redesign",
-      "title": "API Authentication setup",
-      "assigned_to": "u6",
-      "status": "In Progress"
-    },
-    {
-      "project": "Alpha App Launch",
-      "title": "Create Wireframes",
-      "assigned_to": "u7",
-      "status": "Not Started"
-    }
-  ]
+  {
+    "project": "Beta Website Redesign",
+    "title": "Design Database Schema",
+    "assigned_to": "u5",
+    "status": "Completed"
+  },
+  {
+    "project": "Beta Website Redesign",
+    "title": "API Authentication setup",
+    "assigned_to": "u6",
+    "status": "In Progress"
+  },
+  {
+    "project": "Alpha App Launch",
+    "title": "Create Wireframes",
+    "assigned_to": "u7",
+    "status": "Not Started"
+  }
+]

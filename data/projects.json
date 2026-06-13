@@ -1,13 +1,12 @@
 [
-    {
-      "title": "Alpha App Launch",
-      "description": "Developing the core mobile application.",
-      "due_date": "12-1-2002"
-    },
-    {
-      "title": "Beta Website Redesign",
-      "description": "Updating the corporate landing page.",
-      "due_date": "12-1-2002"
-    }
-  ]
-  
+  {
+    "title": "Alpha App Launch",
+    "description": "Developing the core mobile application.",
+    "due_date": "12-1-2002"
+  },
+  {
+    "title": "Beta Website Redesign",
+    "description": "Updating the corporate landing page.",
+    "due_date": "12-1-2002"
+  }
+]

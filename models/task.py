@@ -18,16 +18,28 @@ class Task:
             'status': self.status,
             'assigned_to': self.assigned_to
         }
-    
-    @classmethod
-    def add_task(cls, project_name, title, status, assigned_to):
-        pass
 
-    def view_tasks_for_project(self):
-        pass
+    def add_task(project_name, title, status, assigned_to, projects):
+        if project_name == "" or title == "" or status == "" or assigned_to == "":
+            print("**Please ensure all input fields are filled**")
+        
+        else:
+            projects.append({
+                'project': {project_name},
+                'title': {title},
+                'status': {status},
+                'assigned_to': {assigned_to}
+            })
+            print("**Task added successfully**")
+    def view_tasks_for_project(self, project_name, tasks):
+        for task in tasks:
+            if task['project'] == project_name:
+                print(task)
 
-    def view_task(self):
-        pass
+    def view_task(self, name, tasks):
+        for task in tasks:
+            if task['title'] == name:
+                print(task)
 
     def edit_task(self):
         pass
